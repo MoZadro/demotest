@@ -1,0 +1,5 @@
+com/example/todolist/Todo.class
+com/example/todolist/SecurityConfig.class
+com/example/todolist/TodoRepository.class
+com/example/todolist/TodoController.class
+com/example/todolist/TodoListApplication.class
