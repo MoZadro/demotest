@@ -11,12 +11,14 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/h2-console/**", "/", "/add", "/complete/**", "/delete/**").permitAll()
+                .requestMatchers("/h2-console/**", "/", "/add", "/complete/**", "/delete/**").permitAll() // Dozvoli pristup svim endpointima
                 .anyRequest().authenticated()
             )
-            .csrf(csrf -> csrf.disable()) // Onemogući CSRF
+            .csrf(csrf -> csrf
+                .ignoringRequestMatchers("/h2-console/**") // Isključi CSRF za H2
+            )
             .headers(headers -> headers
-                .frameOptions().disable()
+                .frameOptions().disable() // Omogući iframe za H2 konzolu
             );
         return http.build();
     }
